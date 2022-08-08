@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-using Project_1_Web_API.Models;
+using Project_1_Web_API.Data;
 
 namespace Project_1_Web_API
 {
@@ -10,15 +10,22 @@ namespace Project_1_Web_API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
-            builder.Services.AddControllers();
-            //builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<TodoContext>( opt =>
-                opt.UseInMemoryDatabase("TodoList")
+            // Add database contexts
+            builder.Services.AddDbContext<PassengerContext>( opt =>
+                opt.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection"))
                 );
+            //builder.Services.AddDbContext<FlightContext>( opt =>
+            //    opt.UseSqlServer(
+            //        builder.Configuration.GetConnectionString("DefaultConnection"))
+            //    );
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+            // Add services to the container.
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
@@ -26,14 +33,13 @@ namespace Project_1_Web_API
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseSwagger();
-                //app.UseSwaggerUI();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
