@@ -8,5 +8,6 @@ namespace Project_1_Web_API.Data
         public PassengerContext(DbContextOptions<PassengerContext> options)
             : base(options) { }
         public DbSet<Project_1_Web_API.Models.Passenger>? Passenger { get; set; }
+        public DbSet<Project_1_Web_API.Models.Flight>? Flight { get; set; }
     }
 }

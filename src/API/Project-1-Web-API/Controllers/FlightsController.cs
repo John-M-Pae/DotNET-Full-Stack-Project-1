@@ -14,9 +14,9 @@ namespace Project_1_Web_API.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-        private readonly FlightContext _context;
+        private readonly PassengerContext _context;
 
-        public FlightsController(FlightContext context)
+        public FlightsController(PassengerContext context)
         {
             _context = context;
         }
@@ -88,7 +88,7 @@ namespace Project_1_Web_API.Controllers
         {
           if (_context.Flight == null)
           {
-              return Problem("Entity set 'FlightContext.Flight'  is null.");
+              return Problem("Entity set 'PassengerContext.Flight'  is null.");
           }
             _context.Flight.Add(flight);
             await _context.SaveChangesAsync();
