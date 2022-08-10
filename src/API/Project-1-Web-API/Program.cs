@@ -11,14 +11,11 @@ namespace Project_1_Web_API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add database contexts
-            builder.Services.AddDbContext<PassengerContext>( opt =>
+            builder.Services.AddDbContext<FlightContext>( opt =>
                 opt.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultConnection"))
                 );
-            //builder.Services.AddDbContext<FlightContext>( opt =>
-            //    opt.UseSqlServer(
-            //        builder.Configuration.GetConnectionString("DefaultConnection"))
-            //    );
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             // Add services to the container.

@@ -55,7 +55,7 @@ namespace Project_1_Web_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPassenger(int id, Passenger passenger)
         {
-            if (id != passenger.Id)
+            if (id != passenger.BookingId)
             {
                 return BadRequest();
             }
@@ -93,7 +93,7 @@ namespace Project_1_Web_API.Controllers
             _context.Passenger.Add(passenger);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPassenger", new { id = passenger.Id }, passenger);
+            return CreatedAtAction(nameof(GetPassenger), new { id = passenger.BookingId }, passenger);
         }
 
         // DELETE: api/Passengers/5
@@ -118,7 +118,7 @@ namespace Project_1_Web_API.Controllers
 
         private bool PassengerExists(int id)
         {
-            return (_context.Passenger?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Passenger?.Any(e => e.BookingId == id)).GetValueOrDefault();
         }
     }
 }
