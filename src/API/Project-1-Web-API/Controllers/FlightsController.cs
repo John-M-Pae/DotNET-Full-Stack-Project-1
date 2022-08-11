@@ -25,22 +25,22 @@ namespace Project_1_Web_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Flight>>> GetFlight()
         {
-          if (_context.Flight == null)
+          if (_context.Flights == null)
           {
               return NotFound();
           }
-            return await _context.Flight.ToListAsync();
+            return await _context.Flights.ToListAsync();
         }
 
         // GET: api/Flights/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Flight>> GetFlight(int id)
         {
-          if (_context.Flight == null)
+          if (_context.Flights == null)
           {
               return NotFound();
           }
-            var flight = await _context.Flight.FindAsync(id);
+            var flight = await _context.Flights.FindAsync(id);
 
             if (flight == null)
             {
@@ -86,11 +86,11 @@ namespace Project_1_Web_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Flight>> PostFlight(Flight flight)
         {
-          if (_context.Flight == null)
+          if (_context.Flights == null)
           {
               return Problem("Entity set 'PassengerContext.Flight'  is null.");
           }
-            _context.Flight.Add(flight);
+            _context.Flights.Add(flight);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetFlight", new { id = flight.FlightId }, flight);
@@ -100,17 +100,17 @@ namespace Project_1_Web_API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFlight(int id)
         {
-            if (_context.Flight == null)
+            if (_context.Flights == null)
             {
                 return NotFound();
             }
-            var flight = await _context.Flight.FindAsync(id);
+            var flight = await _context.Flights.FindAsync(id);
             if (flight == null)
             {
                 return NotFound();
             }
 
-            _context.Flight.Remove(flight);
+            _context.Flights.Remove(flight);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -118,7 +118,7 @@ namespace Project_1_Web_API.Controllers
 
         private bool FlightExists(int id)
         {
-            return (_context.Flight?.Any(e => e.FlightId == id)).GetValueOrDefault();
+            return (_context.Flights?.Any(e => e.FlightId == id)).GetValueOrDefault();
         }
     }
 }

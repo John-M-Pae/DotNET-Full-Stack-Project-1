@@ -25,22 +25,23 @@ namespace Project_1_Web_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Passenger>>> GetPassenger()
         {
-          if (_context.Passenger == null)
+          if (_context.Passengers == null)
           {
               return NotFound();
           }
-            return await _context.Passenger.ToListAsync();
+            //Console.WriteLine(_context.Passengers.ToArray()[0]);
+            return await _context.Passengers.ToListAsync();
         }
 
         // GET: api/Passengers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Passenger>> GetPassenger(int id)
         {
-          if (_context.Passenger == null)
+          if (_context.Passengers == null)
           {
               return NotFound();
           }
-            var passenger = await _context.Passenger.FindAsync(id);
+            var passenger = await _context.Passengers.FindAsync(id);
 
             if (passenger == null)
             {
@@ -86,11 +87,11 @@ namespace Project_1_Web_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Passenger>> PostPassenger(Passenger passenger)
         {
-          if (_context.Passenger == null)
+          if (_context.Passengers == null)
           {
               return Problem("Entity set 'PassengerContext.Passenger'  is null.");
           }
-            _context.Passenger.Add(passenger);
+            _context.Passengers.Add(passenger);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetPassenger), new { id = passenger.BookingNumber }, passenger);
@@ -100,17 +101,17 @@ namespace Project_1_Web_API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePassenger(int id)
         {
-            if (_context.Passenger == null)
+            if (_context.Passengers == null)
             {
                 return NotFound();
             }
-            var passenger = await _context.Passenger.FindAsync(id);
+            var passenger = await _context.Passengers.FindAsync(id);
             if (passenger == null)
             {
                 return NotFound();
             }
 
-            _context.Passenger.Remove(passenger);
+            _context.Passengers.Remove(passenger);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -118,7 +119,7 @@ namespace Project_1_Web_API.Controllers
 
         private bool PassengerExists(int id)
         {
-            return (_context.Passenger?.Any(e => e.BookingNumber == id)).GetValueOrDefault();
+            return (_context.Passengers?.Any(e => e.BookingNumber == id)).GetValueOrDefault();
         }
     }
 }
