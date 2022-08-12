@@ -16,5 +16,6 @@ namespace Project_1_Web_API.Models
 
         // Not stored data
         public int FlightsBooked => Bookings?.Count() ?? 0;
+        public string Name => LastName + ", " + FirstName;
     }
 }

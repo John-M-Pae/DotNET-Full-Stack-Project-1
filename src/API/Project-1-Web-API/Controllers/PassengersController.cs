@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project_1_Web_API.Data;
+using Project_1_Web_API.DataTransferObjects;
 using Project_1_Web_API.Models;
 
 namespace Project_1_Web_API.Controllers
@@ -84,12 +85,13 @@ namespace Project_1_Web_API.Controllers
         // POST: api/Passengers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Passenger>> PostPassenger(Passenger passenger)
+        public async Task<ActionResult<Passenger>> PostPassenger(PassengerDTO incomingPassenger)
         {
           if (_context.Passengers == null)
           {
               return Problem("Entity set 'AirlineContext.Passengers'  is null.");
           }
+            Passenger passenger = incomingPassenger.DatabaseModel();
             _context.Passengers.Add(passenger);
             await _context.SaveChangesAsync();
 
