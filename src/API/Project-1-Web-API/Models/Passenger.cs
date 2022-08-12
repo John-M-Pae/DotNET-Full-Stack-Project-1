@@ -4,10 +4,10 @@ namespace Project_1_Web_API.Models
 {
     public class Passenger
     {
-        // Set of Minimal test attributes
         [Key]
         public int BookingNumber { get; set; }
-        public string Name { get; set; }
+        public int FlightId { get; set; }
+
         //public virtual Person Person { get; set; }
         //public virtual Flight Flight { get; set; }
 

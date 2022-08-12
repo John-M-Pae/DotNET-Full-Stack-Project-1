@@ -10,6 +10,6 @@
         public string? Job { get; set; }
 
         // Navigation
-        //public virtual ICollection<Flight> Flights { get; set; }
+        public virtual ICollection<Flight> Flights { get; set; }
     }
 }

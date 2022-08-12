@@ -9,5 +9,6 @@ namespace Project_1_Web_API.Data
             : base(options) { }
         public DbSet<Passenger>? Passengers { get; set; }
         public DbSet<Flight>? Flights { get; set; }
+
     }
 }
