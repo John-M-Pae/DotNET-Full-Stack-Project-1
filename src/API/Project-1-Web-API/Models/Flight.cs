@@ -9,10 +9,10 @@
         public string ArrivalAirport { get; set; }
         public int MaxCapacity { get; set; }
 
-        // Not stored
-        //public int PassengersOnFlight => Passengers?.Count ?? 0;
+        // Relational properties
+        public virtual ICollection<Booking>? Bookings { get; set; }
 
-        // Navigation
-        //public virtual ICollection<Passenger>? Passengers { get; set; }
+        // Not stored data
+        public int PassengersBooked => Bookings?.Count ?? 0;
     }
 }

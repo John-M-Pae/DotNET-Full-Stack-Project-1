@@ -10,10 +10,20 @@ namespace Project_1_Web_API.Data
         public DbSet<Passenger>? Passengers { get; set; }
         public DbSet<Flight>? Flights { get; set; }
 
-        //protected override void OnModelCreating(ModelBuilder dbModel)
-        //{
-        //    dbModel.Entity<Passenger>()
-        //        .HasOne();
-        //}
+        protected override void OnModelCreating(ModelBuilder model)
+        {
+            model.Entity<Booking>()
+                .HasKey(book => book.BookingNumber);
+
+            model.Entity<Booking>()
+                .HasOne(book => book.Passenger)
+                .WithMany(pas => pas.Bookings)
+                .HasForeignKey(book => book.PassengerId);
+
+            model.Entity<Booking>()
+                .HasOne(book => book.Flight)
+                .WithMany(flgt => flgt.Bookings)
+                .HasForeignKey(book => book.FlightId);
+        }
     }
 }

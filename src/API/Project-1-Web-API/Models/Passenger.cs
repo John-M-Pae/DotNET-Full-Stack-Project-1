@@ -10,5 +10,11 @@ namespace Project_1_Web_API.Models
         public string? Job { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
+
+        // Relational properties
+        public virtual ICollection<Booking>? Bookings { get; set; }
+
+        // Not stored data
+        public int FlightsBooked => Bookings?.Count() ?? 0;
     }
 }
