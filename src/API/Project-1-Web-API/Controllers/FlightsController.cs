@@ -14,9 +14,9 @@ namespace Project_1_Web_API.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-        private readonly PassengerContext _context;
+        private readonly AirlineContext _context;
 
-        public FlightsController(PassengerContext context)
+        public FlightsController(AirlineContext context)
         {
             _context = context;
         }
@@ -55,7 +55,7 @@ namespace Project_1_Web_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFlight(int id, Flight flight)
         {
-            if (id != flight.FlightId)
+            if (id != flight.Id)
             {
                 return BadRequest();
             }
@@ -88,12 +88,12 @@ namespace Project_1_Web_API.Controllers
         {
           if (_context.Flights == null)
           {
-              return Problem("Entity set 'PassengerContext.Flights'  is null.");
+              return Problem("Entity set 'AirlineContext.Flights'  is null.");
           }
             _context.Flights.Add(flight);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFlight", new { id = flight.FlightId }, flight);
+            return CreatedAtAction(nameof(GetFlight), new { id = flight.Id }, flight);
         }
 
         // DELETE: api/Flights/5
@@ -118,7 +118,7 @@ namespace Project_1_Web_API.Controllers
 
         private bool FlightExists(int id)
         {
-            return (_context.Flights?.Any(e => e.FlightId == id)).GetValueOrDefault();
+            return (_context.Flights?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

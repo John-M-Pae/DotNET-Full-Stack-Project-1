@@ -14,22 +14,21 @@ namespace Project_1_Web_API.Controllers
     [ApiController]
     public class PassengersController : ControllerBase
     {
-        private readonly PassengerContext _context;
+        private readonly AirlineContext _context;
 
-        public PassengersController(PassengerContext context)
+        public PassengersController(AirlineContext context)
         {
             _context = context;
         }
 
         // GET: api/Passengers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Passenger>>> GetPassenger()
+        public async Task<ActionResult<IEnumerable<Passenger>>> GetPassengers()
         {
           if (_context.Passengers == null)
           {
               return NotFound();
           }
-            //Console.WriteLine(_context.Passengers.ToArray()[0]);
             return await _context.Passengers.ToListAsync();
         }
 
@@ -56,7 +55,7 @@ namespace Project_1_Web_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPassenger(int id, Passenger passenger)
         {
-            if (id != passenger.BookingNumber)
+            if (id != passenger.Id)
             {
                 return BadRequest();
             }
@@ -89,12 +88,12 @@ namespace Project_1_Web_API.Controllers
         {
           if (_context.Passengers == null)
           {
-              return Problem("Entity set 'PassengerContext.Passenger'  is null.");
+              return Problem("Entity set 'AirlineContext.Passengers'  is null.");
           }
             _context.Passengers.Add(passenger);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPassenger), new { id = passenger.BookingNumber }, passenger);
+            return CreatedAtAction(nameof(GetPassenger), new { id = passenger.Id }, passenger);
         }
 
         // DELETE: api/Passengers/5
@@ -119,7 +118,7 @@ namespace Project_1_Web_API.Controllers
 
         private bool PassengerExists(int id)
         {
-            return (_context.Passengers?.Any(e => e.BookingNumber == id)).GetValueOrDefault();
+            return (_context.Passengers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

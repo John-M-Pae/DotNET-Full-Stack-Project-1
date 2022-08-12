@@ -10,7 +10,7 @@ using Project_1_Web_API.Data;
 
 namespace Project_1_Web_API.Migrations
 {
-    [DbContext(typeof(PassengerContext))]
+    [DbContext(typeof(AirlineContext))]
     partial class PassengerContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -24,11 +24,11 @@ namespace Project_1_Web_API.Migrations
 
             modelBuilder.Entity("Project_1_Web_API.Models.Flight", b =>
                 {
-                    b.Property<int>("FlightId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FlightId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ArrivalAirport")
                         .IsRequired()
@@ -47,41 +47,40 @@ namespace Project_1_Web_API.Migrations
                     b.Property<int>("MaxCapacity")
                         .HasColumnType("int");
 
-                    b.HasKey("FlightId");
+                    b.HasKey("Id");
 
                     b.ToTable("Flights");
                 });
 
             modelBuilder.Entity("Project_1_Web_API.Models.Passenger", b =>
                 {
-                    b.Property<int>("BookingNumber")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingNumber"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("FlightId")
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.HasKey("BookingNumber");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("FlightId");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Job")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Passengers");
-                });
-
-            modelBuilder.Entity("Project_1_Web_API.Models.Passenger", b =>
-                {
-                    b.HasOne("Project_1_Web_API.Models.Flight", null)
-                        .WithMany("Passengers")
-                        .HasForeignKey("FlightId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Project_1_Web_API.Models.Flight", b =>
-                {
-                    b.Navigation("Passengers");
                 });
 #pragma warning restore 612, 618
         }

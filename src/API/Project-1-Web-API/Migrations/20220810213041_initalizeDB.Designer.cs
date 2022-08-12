@@ -11,7 +11,7 @@ using Project_1_Web_API.Data;
 
 namespace Project_1_Web_API.Migrations
 {
-    [DbContext(typeof(PassengerContext))]
+    [DbContext(typeof(AirlineContext))]
     [Migration("20220810213041_initalizeDB")]
     partial class initalizeDB
     {
