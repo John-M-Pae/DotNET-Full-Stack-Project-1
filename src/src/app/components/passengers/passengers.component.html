@@ -1,0 +1,14 @@
+<p>----- passenger -----</p>
+
+<div>
+    <button type="button" (click)="getAllNames()">fetch passengers</button>
+    <div *ngIf="requested">
+        <ul>
+            <li *ngFor="let pas of passengers">
+                <span>{{pas.id}} :: {{pas.lastName}}, {{pas.firstName}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<p>----- passenger -----</p>
