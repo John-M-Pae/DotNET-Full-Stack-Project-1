@@ -18,13 +18,6 @@ export class PassengerService {
   };
   
   constructor(private http: HttpClient) { }
-  
-  // handleError<T>(op = 'operation', result?: T) {
-  //   return (err:any): Observable<T> => {
-  //     console.error(err);
-  //     return of(result as T)
-  //   }
-  // }
 
   getAll(): Observable<Passenger[]> {
     return of(
@@ -40,10 +33,23 @@ export class PassengerService {
       firstName: 'Latisha',
       lastName: 'Walcott',
       job: null,
-      email: 'lwalcott23@gmail.com',
+      email: 'tisha23@gmail.com',
       age: 24
     }] as Passenger[]
     );
     //return this.http.get<Passenger[]>(this.baseURL, this.httpOptions);
   }
+
+  get(id: any): Observable<Passenger> {
+    return this.http.get<Passenger>(`${this.baseURL}/${id}`, this.httpOptions);
+  }
+
+  create(outgoingPassenger: Passenger): Observable<Passenger> {
+    return this.http.post(this.baseURL, outgoingPassenger);
+  }
+
+  remove(id: any): Observable<Passenger> {
+    return this.http.delete(`${this.baseURL}/${id}`, this.httpOptions);
+  }
+
 }
