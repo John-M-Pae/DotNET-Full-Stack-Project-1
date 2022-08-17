@@ -91,6 +91,10 @@ namespace Project_1_Web_API.Controllers
           {
               return Problem("Entity set 'AirlineContext.Flights'  is null.");
           }
+            if (incomingFlight.ArrivalTime < incomingFlight.DepartureTime)
+            {
+                return Problem("The flight is set to arrive before it departs");
+            }
             Flight flight = incomingFlight.DatabaseModel();
             _context.Flights.Add(flight);
             await _context.SaveChangesAsync();

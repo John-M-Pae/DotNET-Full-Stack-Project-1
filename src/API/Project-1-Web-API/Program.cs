@@ -9,6 +9,14 @@ namespace Project_1_Web_API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddCors(opt => {
+                opt.AddPolicy("AllowAll", 
+                    policy => {
+                        policy.AllowAnyOrigin();
+                        policy.AllowAnyMethod();
+                        policy.AllowAnyHeader();
+                    });
+            });
 
             // Add database contexts
             builder.Services.AddDbContext<AirlineContext>( opt =>
@@ -35,6 +43,14 @@ namespace Project_1_Web_API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAll");
+
+            app.Use( async (context, next) =>
+            {
+                context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                await next();
+            });
 
             app.UseAuthorization();
 
