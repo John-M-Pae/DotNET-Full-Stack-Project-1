@@ -1,0 +1,68 @@
+<p>--- submit-passenger ---</p>
+
+<div class="container">
+    <h2>Add New Passenger::</h2>
+    <form [formGroup]="newPassengerForm" (ngSubmit)="submit()">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" formControlName="firstName" id="firstName" class="form-control">
+            <!-- <div *ngIf="formControls['firstName'].touched && formControls['firstName'].invalid" class="alert alert-danger">
+                <div *ngIf="">
+                    First name of passenger is required.
+                </div>
+            </div> -->
+        </div>
+        <div class="form-group">
+            <label for="lastName">last Name:</label>
+            <input type="text" formControlName="lastName" id="lastName" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" formControlName="age" id="age" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" formControlName="email" id="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="job">Job:</label>
+            <input type="text" formControlName="job" id="job" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!newPassengerForm.valid">Submit new passenger</button>
+    </form>
+</div>
+
+<!-- <div [hidden]="submitted">
+    <form (ngSubmit)="onSubmit()">
+        
+    </form>
+</div> -->
+<!-- <div class="form-group">
+    <label for="firstName">First Name: </label>
+    <input type="text" id="firstName" class="form-control"
+        name="firstName" [(ngModel)]="newPassenger.firstName"
+            required>
+</div>
+
+<div class="form-group">
+    <label for="lastName">Last Name: </label>
+    <input type="text" id="lastName" class="form-control"
+        name="lastName" [(ngModel)]="newPassenger.lastName"
+            required>
+</div>
+
+<div class="form-group">
+    <label for="email">Email Address: </label>
+    <input type="text" id="email" class="form-control"
+        name="email" [(ngModel)]="newPassenger.email"
+            required>
+</div>
+
+<div class="form-group">
+    <label for="age">Age: </label>
+    <input type="number" id="age" class="form-control"
+        name="age" [(ngModel)]="newPassenger.age"
+            required>
+</div> -->
+
+<p>--- submit-passenger ---</p>

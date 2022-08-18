@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
 import { Passenger } from '../models/passenger';
+import { PassengerDTO } from '../models/passenger-dto';
 import { environment } from 'src/environments/environment';
 
 
@@ -45,7 +46,7 @@ export class PassengerService {
     return this.http.get<Passenger>(`${this.baseURL}/${id}`, this.httpOptions);
   }
 
-  createNewPassenger(outgoingPassenger: Passenger): Observable<Passenger> {
+  createNewPassenger(outgoingPassenger: PassengerDTO): Observable<Passenger> {
     return this.http.post(this.baseURL, outgoingPassenger);
   }
 
