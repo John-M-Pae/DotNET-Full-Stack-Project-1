@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable} from 'rxjs';
-import { Passenger } from '../models/passenger';
-import { PassengerDTO } from '../models/passenger-dto';
+import { Passenger, PassengerDTO } from '../models/passenger';
 import { environment } from 'src/environments/environment';
 
 
@@ -47,11 +46,11 @@ export class PassengerService {
   }
 
   createNewPassenger(outgoingPassenger: PassengerDTO): Observable<Passenger> {
-    return this.http.post(this.baseURL, outgoingPassenger);
+    return this.http.post<Passenger>(this.baseURL, outgoingPassenger, this.httpOptions);
   }
 
-  removeFlight(id: any): Observable<Passenger> {
-    return this.http.delete(`${this.baseURL}/${id}`, this.httpOptions);
+  removePassenger(id: any): Observable<Passenger> {
+    return this.http.delete<Passenger>(`${this.baseURL}/${id}`, this.httpOptions);
   }
 
 }
