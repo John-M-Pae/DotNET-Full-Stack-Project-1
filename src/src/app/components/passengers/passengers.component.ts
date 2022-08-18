@@ -9,7 +9,6 @@ import { PassengerService } from 'src/app/services/passenger.service';
 })
 export class PassengersComponent implements OnInit {
 
-  requested = false;
   passengers?: Passenger[];
 
   constructor(private passengerService: PassengerService) { }
@@ -17,10 +16,11 @@ export class PassengersComponent implements OnInit {
   ngOnInit(): void { }
 
   getAllNames(): void {
-    this.requested = true;
     this.passengerService.getAll().subscribe(
       pas => this.passengers = pas
     );
   }
+
+  
 
 }
