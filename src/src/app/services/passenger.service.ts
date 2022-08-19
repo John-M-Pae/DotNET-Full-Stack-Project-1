@@ -21,27 +21,10 @@ export class PassengerService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Passenger[]> {
-    // return of(
-    //   [{
-    //     id: 14,
-    //     firstName: 'John',
-    //     lastName: 'Pae',
-    //     job: 'programer',
-    //     email: 'JPae@skillstorm.com',
-    //     age: 25
-    // }, {
-    //   id: 23,
-    //   firstName: 'Latisha',
-    //   lastName: 'Walcott',
-    //   job: null,
-    //   email: 'tisha23@gmail.com',
-    //   age: 24
-    // }] as Passenger[]
-    // );
     return this.http.get<Passenger[]>(this.baseURL, this.httpOptions);
   }
 
-  get(id: any): Observable<Passenger> {
+  getById(id: any): Observable<Passenger> {
     return this.http.get<Passenger>(`${this.baseURL}/${id}`, this.httpOptions);
   }
 
@@ -53,4 +36,7 @@ export class PassengerService {
     return this.http.delete<Passenger>(`${this.baseURL}/${id}`, this.httpOptions);
   }
 
+  updatePassenger(updatingPassenger: Passenger): Observable<Passenger> {
+    return this.http.put<Passenger>(`${this.baseURL}/${updatingPassenger.id}`, updatingPassenger, this.httpOptions);
+  }
 }

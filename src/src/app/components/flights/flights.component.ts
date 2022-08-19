@@ -11,6 +11,7 @@ export class FlightsComponent implements OnInit {
 
   flights?: Flight[];
   selected?: Flight;
+  newView = false;
 
   constructor(private flightService: FlightService) { }
 
@@ -25,6 +26,8 @@ export class FlightsComponent implements OnInit {
       this.selected = flgt;
     }
   }
+
+  addNew():void {this.newView = !this.newView;}
 
   getAllFlights(): void {
     this.flightService.getAll().subscribe(

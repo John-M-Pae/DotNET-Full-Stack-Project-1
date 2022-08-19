@@ -8,8 +8,8 @@
                     <span>{{flgt.id}} :: From: {{flgt.departureAirport}} To: {{flgt.arrivalAirport}} </span>
                 </button>
                 <div *ngIf="selected === flgt">
-                    <button type="button">Delete</button>
-                    <button type="button">Edit flight info</button>
+                    <button type="button">Delete flight</button>
+                    <a [routerLink]="['edit']" [queryParams]="{flgtId: flgt.id}">Edit info</a>
                     <p>Details::</p>
                     <table>
                         <thead>
@@ -41,4 +41,7 @@
     </div>
 </div>
 
-<app-submit-flight></app-submit-flight>
+<button type="button" (click)="addNew()">Add New Flight</button>
+<div *ngIf="newView">
+    <app-submit-flight></app-submit-flight>
+</div>

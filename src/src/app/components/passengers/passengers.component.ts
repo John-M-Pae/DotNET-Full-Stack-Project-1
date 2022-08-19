@@ -11,10 +11,11 @@ export class PassengersComponent implements OnInit {
 
   passengers?: Passenger[];
   selected?: Passenger;
+  newView = false;
 
   constructor(private passengerService: PassengerService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   focusOn(pas: Passenger): void {
     if (pas.id === this.selected?.id) {
@@ -26,6 +27,10 @@ export class PassengersComponent implements OnInit {
     console.log(this.selected);
   }
 
+  addNew():void {
+    this.newView = !this.newView;
+  }
+
   getAllNames(): void {
     this.passengerService.getAll().subscribe(
       pas => this.passengers = pas
@@ -33,7 +38,8 @@ export class PassengersComponent implements OnInit {
   }
 
   removePassenger(id: number): void {
-    this.passengerService.removePassenger(id).subscribe();
+    this.passengerService.removePassenger(id).subscribe(() => {
+      console.log('Passenger deleted.');});
   }
 
 }

@@ -9,7 +9,7 @@
                 </button>
                 <div *ngIf="selected === pas">
                     <button type="button" (click)="removePassenger(pas.id)">Delete {{pas.firstName}}</button>
-                    <button type="button">Edit info</button>
+                    <a [routerLink]="['edit']" [queryParams]="{pasId: pas.id}">Edit info</a>
                     <p>Detials::</p>
                     <table>
                         <thead>
@@ -41,4 +41,7 @@
     </div>
 </div>
 
-<app-submit-passenger></app-submit-passenger>
+<button type="button" (click)="addNew()">Add New Passenger</button>
+<div *ngIf="newView">
+    <app-submit-passenger></app-submit-passenger>
+</div>
