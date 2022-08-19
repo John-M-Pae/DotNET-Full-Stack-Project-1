@@ -1,6 +1,5 @@
-<p>----- passenger -----</p>
-
 <div>
+    <h2>Passengers::</h2>
     <button type="button" (click)="getAllNames()">fetch passengers</button>
     <div>
         <ul>
@@ -11,7 +10,7 @@
                 <div *ngIf="selected === pas">
                     <button type="button" (click)="removePassenger(pas.id)">Delete {{pas.firstName}}</button>
                     <button type="button">Edit info</button>
-                    details
+                    <span>Details::</span>
                 </div>
             </li>
         </ul>
@@ -19,5 +18,3 @@
 </div>
 
 <app-submit-passenger></app-submit-passenger>
-
-<p>----- passenger -----</p>

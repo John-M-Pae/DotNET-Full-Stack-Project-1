@@ -1,14 +1,18 @@
-<p>----- flight -----</p>
-
 <div>
+    <h2>Flights::</h2>
     <button type="button" (click)="getAllFlights()">fetch flights</button>
     <div>
         <ul>
             <li *ngFor="let flgt of flights">
-                <span>{{flgt.id}} :: From: {{flgt.departureAirport}} To: {{flgt.arrivalAirport}} </span>
+                <button type="button" (click)="focusOn(flgt)">
+                    <span>{{flgt.id}} :: From: {{flgt.departureAirport}} To: {{flgt.arrivalAirport}} </span>
+                </button>
+                <div *ngIf="selected === flgt">
+                    Details
+                </div>
             </li>
         </ul>
     </div>
 </div>
 
-<p>----- flight -----</p>
+<app-submit-flight></app-submit-flight>

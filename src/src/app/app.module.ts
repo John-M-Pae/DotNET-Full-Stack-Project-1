@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PassengersComponent } from './components/passengers/passengers.component';
 import { FlightsComponent } from './components/flights/flights.component';
 import { SubmitPassengerComponent } from './components/submit-passenger/submit-passenger.component';
+import { SubmitFlightComponent } from './components/submit-flight/submit-flight.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { SubmitPassengerComponent } from './components/submit-passenger/submit-p
     PassengersComponent,
     FlightsComponent,
     SubmitPassengerComponent,
+    SubmitFlightComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
