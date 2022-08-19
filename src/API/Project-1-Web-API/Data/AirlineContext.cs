@@ -25,5 +25,7 @@ namespace Project_1_Web_API.Data
                 .WithMany(flgt => flgt.Bookings)
                 .HasForeignKey(book => book.FlightId);
         }
+
+        public DbSet<Project_1_Web_API.Models.Booking>? Booking { get; set; }
     }
 }
