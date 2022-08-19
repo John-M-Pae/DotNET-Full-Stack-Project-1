@@ -5,6 +5,7 @@ export interface Passenger {
     job?: string;
     email: string;
     age: number;
+    flightsBooked:number;
 }
 
 export interface PassengerDTO{

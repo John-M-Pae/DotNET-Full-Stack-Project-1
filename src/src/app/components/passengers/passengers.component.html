@@ -10,7 +10,31 @@
                 <div *ngIf="selected === pas">
                     <button type="button" (click)="removePassenger(pas.id)">Delete {{pas.firstName}}</button>
                     <button type="button">Edit info</button>
-                    <span>Details::</span>
+                    <p>Detials::</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Passenger ID</th>
+                                <th>Last Name</th>
+                                <th>First Name</th>
+                                <th>Current Bookings</th>
+                                <th>Age</th>
+                                <th>Email Address</th>
+                                <th>Employment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{pas.id}}</td>
+                                <td>{{pas.lastName}}</td>
+                                <td>{{pas.firstName}}</td>
+                                <td>{{pas.flightsBooked}}</td>
+                                <td>{{pas.age}}</td>
+                                <td>{{pas.email}}</td>
+                                <td>{{pas.job}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </li>
         </ul>

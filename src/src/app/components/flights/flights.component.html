@@ -8,7 +8,33 @@
                     <span>{{flgt.id}} :: From: {{flgt.departureAirport}} To: {{flgt.arrivalAirport}} </span>
                 </button>
                 <div *ngIf="selected === flgt">
-                    Details
+                    <button type="button">Delete</button>
+                    <button type="button">Edit flight info</button>
+                    <p>Details::</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Flight ID</th>
+                                <th>Date & Time of Departure</th>
+                                <th>Departure Airport</th>
+                                <th>Date & Time of Arrival</th>
+                                <th>Arrival Airport</th>
+                                <th>Current Passengers</th>
+                                <th>Maximum Occupancy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{flgt.id}}</td>
+                                <td>{{flgt.departureTime}}</td>
+                                <td>{{flgt.departureAirport}}</td>
+                                <td>{{flgt.arrivalTime}}</td>
+                                <td>{{flgt.arrivalAirport}}</td>
+                                <td>{{flgt.passengersBooked}}</td>
+                                <td>{{flgt.maxCapacity}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </li>
         </ul>
